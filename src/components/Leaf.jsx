@@ -96,12 +96,15 @@ const Sales = styled.div`
     flex-direction: column;
 `;
 const Status = styled.div`
-    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem 0.5rem;
     border-radius: 5px;
     background-color: ${(props) => props.theme.bg};
     color: ${(props) => props.theme.color};
     font-weight: 700;
-    font-size: 0.95em;
+    font-size: 0.9em;
 `;
 
 const TotalSales = styled.p`

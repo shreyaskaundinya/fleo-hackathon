@@ -6,13 +6,18 @@ import Leaf from './Leaf';
 const Tree = ({ data }) => {
     const [showLeafs, setShowLeafs] = useState(false);
 
+    // if leaf contains children -> render a tree else -> render a leaf
     const LeafComponents = data.head.children.map((leafData) => {
         if (leafData.head.children.length > 0) {
             return <Tree data={leafData} />;
+        } else {
+            return (
+                <Leaf
+                    leafData={leafData.head.data}
+                    key={leafData.head.data.name}
+                />
+            );
         }
-        return (
-            <Leaf leafData={leafData.head.data} key={leafData.head.data.name} />
-        );
     });
 
     useEffect(() => {}, [data]);
@@ -31,7 +36,7 @@ const Tree = ({ data }) => {
 };
 
 Tree.propTypes = {
-    data: PropTypes.array,
+    data: PropTypes.object,
 };
 
 export default Tree;
@@ -40,11 +45,8 @@ const TreeContainer = styled.ul`
     display: flex;
     flex-direction: column;
     position: relative;
-    /* margin: 4rem; */
-    /* padding-top: 20px; */
 `;
 const Head = styled.div``;
-const Children = styled.div``;
 
 const Leafs = styled.li`
     display: ${(props) => {
